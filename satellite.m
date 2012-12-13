@@ -1,4 +1,4 @@
-function [ energy ] = satellite(start_altitude, start_velocity, timestep)
+function [ init_energy final_energy ] = satellite(start_altitude, start_velocity, timestep)
 
 
 %{
@@ -56,12 +56,13 @@ end
 
 % Set constants & initial values
 BALL_MASS = 1; % kg
+EARTH_RADIUS = 6.37e6; % m
 time = 0;
 RUN_FOR = 5600 % s, the time to run until
-global position = [start_altitude, 0];
-global velocity = [0, start_velocity];
-global acceleration = grav(position);
-energy(1) = total_energy(mass, velocity);
+position = [(start_altitude+EARTH_RADIUS) , 0];
+velocity = [0, start_velocity];
+acceleration = grav(position);
+init_energy = total_energy(mass, velocity, position);
 
 % Set the file to print to
 fid = fopen(satellite.data, 'w');
@@ -91,16 +92,29 @@ end
 function [ accel ] = grav(positions)
 
 EARTH_MASS = 5.98e24; % kg
-EARTH_RADIUS = 6.37e6; % m
 GRAVITATION = 6.67e-11; % N-m^2/kg^2
 
-%overall gravity
+% overall gravity
+
+overall_gravity = (GRAVITATION * EARTH_MASS) / ( (hypo(position))^3 )
 
 
 end
 
 % FUNCTION FOR ENERGY CALCULATIONS
-function [ found_total_energy ] = total_energy(mass, velocity)
+function [ found_total_energy ] = total_energy(mass, velocity, position)
 
 % Find gravitational potential energy
-gpe = mass * 
+gpe = mass * hypo(position) * hypo(grav(position));
+% Kinetic Energy
+ke = 0.5 * mass * hypo(velocity)^2;
+found_total_energy = ke + gpe;
+
+end
+
+% Solve the pythagorean triangle for the hypotenuse, given an array. This only works on the first two entries in the array.
+function [ hypotenuse ] = hypo(array)
+hypotenuse = (array(1)^2 + array(2)^2)^(0.5);
+end
+
+
