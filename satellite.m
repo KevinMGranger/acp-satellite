@@ -73,16 +73,19 @@ fprintf(1, 't  %5E  x  %5E  y %5E  vx  %5E  vy  %5E  a  %5E', time, position, ve
 fprintf(fid, 't 
 
 while (time <  RUN_FOR)
+	old_position = position;
+	old_velocity = velocity;
 
-    
-    
-    this is a new timestep! therefore,
-    "old" values = values from before
+	time = time + timestep;
+	velocity = old_velocity + ( acceleration * timestep );
+	position = old_position + ( old_velocity * timestep );
+	acceleration = grav(position);
+
+	    
+	    
     print to screen and file
     
-time++
 
-when done, recalc energy(2)
 
 fclose(fid);
 
