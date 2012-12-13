@@ -1,0 +1,11 @@
+function = energywrapper
+
+init_timestep = timestep = 1;
+
+energy = satellite(250000, 7762, timestep);
+
+frac_error = ( energy(2) - energy(1) ) / energy(1);
+
+fprintf('Fractional error = ${0}', frac_error);
+
+if 

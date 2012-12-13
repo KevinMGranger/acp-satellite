@@ -1,6 +1,5 @@
 function [ energy ] = satellite(start_altitude, start_velocity, timestep)
 
-
 %{
     TODOS:
         make main program
@@ -14,7 +13,7 @@ function [ energy ] = satellite(start_altitude, start_velocity, timestep)
             maclab
             obx
             e3x
-        EXTRA CRED: tiny_earth
+        EXTRA CRED: timy_earth
         rewrite for MOON
         rewrite with different integration methods (3)
             make script to compare nrg change with same timstep
@@ -98,9 +97,3 @@ GRAVITATION = 6.67e-11; % N-m^2/kg^2
 
 
 end
-
-% FUNCTION FOR ENERGY CALCULATIONS
-function [ found_total_energy ] = total_energy(mass, velocity)
-
-% Find gravitational potential energy
-gpe = mass * 
