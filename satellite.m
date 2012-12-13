@@ -58,7 +58,7 @@ end
 BALL_MASS = 1; % kg
 EARTH_RADIUS = 6.37e6; % m
 time = 0;
-RUN_FOR = 5600 % s, the time to run until
+RUN_FOR = 5600 % s, the time to run until. 5600 s = 90 minutes.
 position = [(start_altitude+EARTH_RADIUS) , 0];
 velocity = [0, start_velocity];
 acceleration = grav(position);
