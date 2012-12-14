@@ -79,7 +79,7 @@ while (time <  RUN_FOR)
 	time = time + timestep;
 	velocity = old_velocity + ( acceleration * timestep );
 	position = old_position + ( old_velocity * timestep );
-	acceleration = grav(position);
+	acceleration = grav(old_position);
 
 	    
 	% only print to the screen every 1 simulation-second
