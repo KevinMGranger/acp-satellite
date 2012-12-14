@@ -67,10 +67,10 @@ init_energy = total_energy(mass, velocity, position);
 % Set the file to print to
 fid = fopen(satellite.data, 'w');
 
-fprintf(1, 't  %5E  x  %5E  y %5E  vx  %5E  vy  %5E  a  %5E', time, position, velocity, acceleration);
+fprintf(1, 't  %5E  x  %5E  y %5E  vx  %5E  vy  %5E  a  %5E', time, position(1), position(2), velocity(1), velocity(2), hypo(acceleration));
 
+fprintf(fid, '%012f\t%012f\t%012f\t%012f\t%012f\t%012f\t', time, position(1), position(2), velocity(1), velocity(2), hypo(acceleration));
 
-fprintf(fid, 't 
 
 while (time <  RUN_FOR)
 	old_position = position;
@@ -82,10 +82,14 @@ while (time <  RUN_FOR)
 	acceleration = grav(position);
 
 	    
-	    
-    print to screen and file
-    
+	% only print to the screen every 1 simulation-second
+	if (rem(time,1) == 0)
+		fprintf(1, 't  %5E  x  %5E  y %5E  vx  %5E  vy  %5E  a  %5E', time, position(1), position(2), velocity(1), velocity(2), hypo(acceleration));
+	end
 
+	fprintf(fid, '%012f\t%012f\t%012f\t%012f\t%012f\t%012f\t', time, position(1), position(2), velocity(1), velocity(2), hypo(acceleration));
+    
+end
 
 fclose(fid);
 
