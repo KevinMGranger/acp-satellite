@@ -107,7 +107,7 @@ GRAVITATION = 6.67e-11; % N-m^2/kg^2
 
 overall_gravity = - (GRAVITATION * EARTH_MASS) / ( (hypo(position))^3 );
 
-accel = [ overall_gravity*position(1) overall_gravity*position(2) ]
+accel = [ overall_gravity*position(1) overall_gravity*position(2) ];
 
 end
 
