@@ -14,6 +14,9 @@ while ( (tries < 10) && (init_frac_error / new_frac_error) > 0.5) )
 	timestep = timestep / 2;
 	[init_energy final_energy] = satellite(START_ALTITUDE, START_VELOCITY, timestep);
 	new_frac_error = ( final_energy - init_energy ) / init_energy;
+	if (new_frac_error <= 0.01)
+		fprintf('1\% error! Attained with a timestep of %d', timestep);
+	end
 	tries = tries + 1;
 end
 
