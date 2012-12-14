@@ -93,6 +93,8 @@ end
 
 fclose(fid);
 
+final_energy = total_energy(mass, velocity, position);
+
 end
 
 % FUNCTION FOR GRAVITATIONAL COMPUTATION
